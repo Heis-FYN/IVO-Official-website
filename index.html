@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVO - Professional Network & Job Board</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0d47a1;
+            --accent-blue: #1976d2;
+            --text-dark: #111;
+            --bg-light: #fafafa;
+            --white: #ffffff;
+            --card-bg: #ffffff;
+            --card-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 10px 20px rgba(13, 71, 161, 0.25);
+            --border-light: #e3f2fd;
+            --text-muted: #666;
+            --input-bg: #ffffff;
+            --modal-bg: #ffffff;
+            --footer-bg: #111;
+            --footer-text: #ddd;
+            --auth-btn-bg: rgba(255, 255, 255, 0.2);
+            --auth-btn-text: #ffffff;
+            --auth-btn-border: rgba(255, 255, 255, 0.3);
+            --close-btn-color: #999;
+            --close-btn-hover: #d32f2f;
+        }
+
+        [data-theme="dark"] {
+            --primary-blue: #1e88e5;
+            --accent-blue: #42a5f5;
+            --text-dark: #e0e0e0;
+            --bg-light: #121212;
+            --white: #1e1e1e;
+            --card-bg: #1e1e1e;
+            --card-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 10px 20px rgba(66, 165, 245, 0.3);
+            --border-light: #333;
+            --text-muted: #aaa;
+            --input-bg: #2d2d2d;
+            --modal-bg: #1e1e1e;
+            --footer-bg: #0a0a0a;
+            --footer-text: #bbb;
+            --auth-btn-bg: rgba(255, 255, 255, 0.15);
+            --auth-btn-text: #ffffff;
+            --auth-btn-border: rgba(255, 255, 255, 0.2);
+            --close-btn-color: #bbb;
+            --close-btn-hover: #ff5252;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            color: var(--white);
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(13, 71, 161, 0.2);
+            position: relative;
+            transition: background 0.4s ease;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        header p {
+            margin: 12px 0 0;
+            font-size: 1.15rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+
+        .auth-btn {
+            background: var(--auth-btn-bg);
+            color: var(--auth-btn-text);
+            border: 1px solid var(--auth-btn-border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-left: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .auth-btn.signup {
+            background: white;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .auth-btn.signup:hover {
+            background: #e3f2fd;
+            color: #0d47a1;
+            transform: translateY(-2px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
+            transition: all 0.35s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(25, 118, 210, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px;
+            padding-bottom: 100px;
+        }
+
+        .search-bar {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            font-size: 1.05rem;
+            background: var(--input-bg);
+            color: var(--text-dark);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input::placeholder {
+            color: #777;
+        }
+
+        .search-bar button {
+            padding: 16px 28px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.35s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #0b3a80;
+            transform: scale(1.03);
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #bbdefb;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.35s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+
+        .card-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .card-content {
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            color: var(--primary-blue);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin: 4px 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .card p strong {
+            color: var(--text-dark);
+        }
+
+        .card p:last-child {
+            color: var(--accent-blue);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card:hover .card-img::after {
+            height: 100px;
+        }
+
+        .user-grid,
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+
+        #job-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 520px;
+            margin: 0 auto 35px;
+            padding: 25px;
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-light);
+        }
+
+        #job-form input,
+        #job-form textarea {
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: var(--input-bg);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        #job-form input:focus,
+        #job-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.15);
+        }
+
+        #job-form button {
+            padding: 14px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.35s ease;
+        }
+
+        #job-form button:hover {
+            background: #0b3a80;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.3);
+        }
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--modal-bg);
+            padding: 40px;
+            border-radius: 18px;
+            max-width: 480px;
+            width: 92%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(13, 71, 161, 0.2);
+            position: relative;
+            border: 1px solid var(--border-light);
+            color: var(--text-dark);
+        }
+
+        /* Styles for the Detailed Profile Modal (LinkedIn Style) */
+        #my-profile-modal .modal-content {
+            max-width: 800px;
+            height: 90vh;
+            /* Make it tall */
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        #profile-scroll-area {
+            overflow-y: auto;
+            padding: 0 20px 40px;
+            flex: 1;
+        }
+
+        .profile-section-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        .profile-section-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .profile-header-card {
+            background: var(--card-bg);
+            padding-bottom: 0;
+            margin-bottom: 20px;
+            border-radius: 18px 18px 0 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-cover-photo {
+            height: 150px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--primary-blue));
+            border-radius: 18px 18px 0 0;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--card-bg);
+            object-fit: cover;
+            position: absolute;
+            top: 90px;
+            left: 30px;
+            box-shadow: 0 0 0 4px var(--primary-blue);
+        }
+
+        .profile-intro-details {
+            padding: 80px 30px 20px;
+            position: relative;
+        }
+
+        .profile-intro-details h1 {
+            font-size: 2rem;
+            margin: 0 0 8px;
+            color: var(--text-dark);
+        }
+
+        .profile-intro-details p {
+            margin: 4px 0;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .profile-intro-details .location {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        /* NEW SOCIAL LINKS CONTAINER */
+        .social-links-profile {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links-profile a {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links-profile a:hover {
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* END NEW SOCIAL LINKS CONTAINER */
+
+        .experience-item,
+        .education-item {
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-blue);
+            padding-left: 15px;
+        }
+
+        .experience-item h4,
+        .education-item h4 {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .experience-item p,
+        .education-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 2px 0;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #e3f2fd;
+            color: var(--primary-blue);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="dark"] .skill-tag {
+            background: #2d2d2d;
+            color: var(--accent-blue);
+        }
+
+        /* NEW STYLES FOR EDIT PROFILE BUTTON/MODAL */
+        .edit-profile-btn {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .edit-profile-btn:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(25, 118, 210, 0.4);
+        }
+
+        #edit-profile-form textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: var(--input-bg);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            resize: vertical;
+            margin: 12px 0;
+            /* Align with input margins */
+        }
+
+
+        .close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 32px;
+            color: var(--close-btn-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close:hover {
+            color: var(--close-btn-hover);
+            background: rgba(211, 47, 47, 0.1);
+            transform: scale(1.15) rotate(90deg);
+        }
+
+        .modal-content input {
+            background: var(--input-bg);
+            color: var(--text-dark);
+            border: 1px solid #ddd;
+            /* Updated border color for input */
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        /* Specific style to make number input look good */
+        .modal-content input[type="number"]::-webkit-outer-spin-button,
+        .modal-content input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .modal-content input[type="number"] {
+            -moz-appearance: textfield;
+            /* Firefox */
+        }
+
+
+        .modal-content input::placeholder {
+            color: #888;
+        }
+
+        .modal-content button {
+            background: var(--accent-blue);
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            color: white;
+        }
+
+        .modal-content button:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+        }
+
+        .modal-content .switch a {
+            color: var(--accent-blue);
+        }
+
+
+        .about-content {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .about-content h3 {
+            color: var(--primary-blue);
+        }
+
+        .footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.95rem;
+            margin-top: 50px;
+        }
+
+        .social-links-footer a {
+            color: var(--footer-text);
+            font-size: 1.6rem;
+            margin: 0 14px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            position: relative;
+        }
+
+        .social-links-footer a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .social-links-footer a:hover {
+            color: white;
+            transform: translateY(-6px) scale(1.3);
+        }
+
+        .social-links-footer a:hover::before {
+            width: 50px;
+            height: 50px;
+        }
+
+        .social-links-footer a:hover i {
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .footer p {
+            color: #999;
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            background: #1565c0;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(25, 118, 210, 0.4);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .user-grid,
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                padding: 10px 14px;
+                font-size: 1rem;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .search-bar button {
+                border-radius: 0 0 12px 12px;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            #back-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .theme-toggle {
+                top: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .auth-btn {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .card {
+                height: 300px;
+            }
+
+            .card-img {
+                height: 140px;
+            }
+
+            .close {
+                font-size: 28px;
+                top: 15px;
+                right: 18px;
+            }
+
+            #my-profile-modal .modal-content {
+                height: 100vh;
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .profile-avatar {
+                top: 100px;
+                left: 20px;
+            }
+
+            .profile-intro-details {
+                padding: 70px 20px 20px;
+            }
+
+            .profile-intro-details h1 {
+                font-size: 1.5rem;
+            }
+
+            .profile-section-card {
+                padding: 20px;
+            }
+
+            .edit-profile-btn {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- HEADER -->
+    <header>
+        <h1>IVO</h1>
+        <p>Connect with Top Talent • Build Your Dream Team</p>
+
+        <!-- Login/Sign Up Buttons (Initially visible) -->
+        <div id="auth-controls" style="position: absolute; top: 20px; right: 20px;">
+            <button onclick="openModal('login-modal')" class="auth-btn">Login</button>
+            <button onclick="openModal('signup-modal')" class="auth-btn signup">Sign Up</button>
+        </div>
+
+        <!-- Profile Button (Hidden until logged in) -->
+        <div id="profile-controls" style="position: absolute; top: 20px; right: 20px; display: none;">
+            <button onclick="showProfileDashboard()" class="auth-btn signup">
+                <i class="fas fa-user-circle"></i> Profile
+            </button>
+        </div>
+    </header>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#workers" onclick="smoothScroll('#workers')">Find Talent</a>
+        <a href="#job-form" onclick="smoothScroll('#job-form')">Post Jobs</a>
+        <a href="#about" onclick="smoothScroll('#about')">About IVO</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- FIND TALENT -->
+        <section id="workers" class="section">
+            <h2>Search Professionals</h2>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search by name, skill, or company."
+                    onkeyup="searchWorkers()">
+                <button type="button" onclick="searchWorkers()">Search</button>
+            </div>
+            <div id="user-grid" class="user-grid"></div>
+        </section>
+
+        <!-- POST JOBS -->
+        <section id="jobs" class="section">
+            <h2>Post a Job Opening</h2>
+            <form id="job-form" onsubmit="event.preventDefault(); postJob();">
+                <input type="text" id="job-title" placeholder="Job Title" required>
+                <input type="text" id="company" placeholder="Company Name" required>
+                <textarea id="job-desc" rows="5" placeholder="Describe the role, responsibilities, and requirements."
+                    required></textarea>
+                <button type="submit">Post Job</button>
+            </form>
+            <div id="job-grid" class="job-grid"></div>
+        </section>
+
+        <!-- ABOUT IVO -->
+        <section id="about" class="section">
+            <h2>About IVO</h2>
+            <div class="about-content">
+                <p><strong>IVO</strong> is a modern, professional networking and hiring platform designed to connect top
+                    talent with forward-thinking companies.</p>
+
+                <h3>Our Mission</h3>
+                <p>To empower professionals and businesses by creating meaningful connections that drive innovation,
+                    growth, and success.</p>
+
+                <h3>Why Choose IVO?</h3>
+                <ul>
+                    <li><strong>Smart Matching</strong>: AI-powered search to find the perfect candidate</li>
+                    <li><strong>Real-Time Updates</strong>: Instant job postings and applicant tracking</li>
+                    <li><strong>Secure & Private</strong>: Your data is encrypted and never shared</li>
+                    <li><strong>Global Reach</strong>: Connect with talent from 150+ countries</li>
+                    <li><strong>Free for Professionals</strong>: No fees to create a profile or apply</li>
+                </ul>
+
+                <h3>Built for the Future</h3>
+                <p>Whether you're a startup founder hiring your first engineer or a Fortune 500 company scaling your
+                    team, IVO provides the tools you need to succeed.</p>
+
+                <p style="margin-top: 25px; font-style: italic; --color: rgba(99, 94, 94, 1);">
+                    Join thousands of professionals and companies already growing with IVO.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Connect with us on.</p>
+        <div class="social-links-footer">
+            <a href="https://wa.me/23350688985" target="_blank" aria-label="whatsapp"><i
+                    class="fab fa-whatsapp"></i></a>
+            <a href="https://telegram.com/ivo" target="_blank" aria-label="telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://phone.com/ivo" target="_blank" aria-label="phone"><i class="fab fa-phone"></i></a>
+            <a href="https://gmail.com/ivo" target="_blank" aria-label="gmail"><i class="fab fa-envelope"></i></a>
+            <a href="https://twitter.com/ivo_network" target="_blank" aria-label="Twitter"><i
+                    class="fab fa-twitter"></i></a>
+        </div>
+        <p>© 2025 IVO. All rights reserved.</p>
+        <p>Connecting talent, building futures.</p>
+    </footer>
+
+    <button id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- MODALS -->
+
+    <!-- MODAL 1: Profile Preview (for OTHER Professionals) -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('profile-modal')">×</span>
+            <h2 id="profile-name"></h2>
+            <p id="profile-title"></p>
+            <p id="profile-company"></p>
+            <p id="profile-skills"></p>
+            <button onclick="contactProfessional()">Contact Professional</button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: DETAILED MY PROFILE (LinkedIn Style) -->
+    <div id="my-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('my-profile-modal')">×</span>
+
+            <div id="profile-scroll-area">
+
+                <!-- 1. INTRO SECTION -->
+                <div class="profile-section-card profile-header-card">
+                    <div class="profile-cover-photo"></div>
+                    <img id="my-profile-avatar" class="profile-avatar"
+                        src="https://placehold.co/120x120/0d47a1/ffffff?text=ME" alt="Profile Avatar">
+                    <div class="profile-intro-details">
+                        <h1 id="my-profile-name"></h1>
+                        <p id="my-profile-headline"></p>
+                        <p class="location" id="my-profile-location"></p>
+                        <p id="my-profile-contact"></p>
+
+                        <!-- NEW SOCIAL LINKS DISPLAY -->
+                        <div id="my-profile-social-links" class="social-links-profile">
+                            <!-- Social links will be injected here -->
+                        </div>
+
+                        <!-- EDIT PROFILE BUTTON -->
+                        <button class="edit-profile-btn" onclick="openEditModal()">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- 2. ABOUT SECTION -->
+                <div class="profile-section-card">
+                    <h3>About</h3>
+                    <p id="my-profile-about"></p>
+                </div>
+
+                <!-- 3. EXPERIENCE SECTION -->
+                <div class="profile-section-card">
+                    <h3>Experience</h3>
+                    <div id="my-profile-experience">
+                        <!-- Experience items will be injected here -->
+                    </div>
+                </div>
+
+                <!-- 4. EDUCATION SECTION -->
+                <div class="profile-section-card">
+                    <h3>Education</h3>
+                    <div id="my-profile-education">
+                        <!-- Education items will be injected here -->
+                    </div>
+                </div>
+
+                <!-- 5. SKILLS SECTION -->
+                <div class="profile-section-card">
+                    <h3>Skills</h3>
+                    <div id="my-profile-skills" class="skill-tags">
+                        <!-- Skill tags will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: EDIT PROFILE -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('edit-profile-modal')">×</span>
+            <h2>Edit Your Professional Profile</h2>
+            <form id="edit-profile-form" onsubmit="event.preventDefault(); saveProfileChanges();">
+                <input type="text" id="edit-name" placeholder="Full Name" required>
+                <input type="text" id="edit-headline" placeholder="Headline (e.g., Senior Developer)" required>
+                <input type="text" id="edit-location" placeholder="Location (e.g., Accra, Ghana)" required>
+                <input type="text" id="edit-contact" placeholder="Contact Info (e.g., email | phone)" required>
+
+                <!-- NEW SOCIAL LINKS INPUTS -->
+                <input type="text" id="edit-linkedin" placeholder="LinkedIn URL/Handle (optional)">
+                <input type="text" id="edit-github" placeholder="GitHub Username (optional)">
+                <input type="text" id="edit-twitter" placeholder="Twitter/X Handle (optional)">
+
+                <textarea id="edit-about" rows="6" placeholder="About Me (Professional Summary)" required></textarea>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">×</span>
+            <h2>Login to IVO</h2>
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Password" required>
+            <button onclick="login()">Login</button>
+            <div class="switch">
+                Don't have an account? <a href="#" onclick="switchModal('login-modal', 'signup-modal')">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signup-modal')">×</span>
+            <h2>Create Your IVO Account</h2>
+            <input type="text" id="signup-name" placeholder="Full Name" required>
+            <input type="email" id="signup-email" placeholder="Email Address" required>
+            <!-- Phone Number Input -->
+            <input type="number" id="signup-number" placeholder="Phone Number" required>
+            <input type="password" id="signup-password" placeholder="Password" required>
+            <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required>
+            <button onclick="signup()">Sign Up</button>
+            <div class="switch">
+                Already have an account? <a href="#" onclick="switchModal('signup-modal', 'login-modal')">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === SMOOTH SCROLL ===
+        function smoothScroll(target) {
+            event.preventDefault();
+            const element = document.querySelector(target);
+            const offset = 80;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // === THEME TOGGLE ===
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        body.setAttribute('data-theme', currentTheme);
+        updateToggleIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon(newTheme);
+        });
+
+        function updateToggleIcon(theme) {
+            themeToggle.innerHTML = theme === 'dark'
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+        }
+
+        // === PROFESSIONAL DATA (Original Profiles are here) ===
+        const professionals = [
+            {
+                id: 1,
+                name: 'Odetola Samuel',
+                title: 'Chief Executive Officer',
+                company: 'IVO',
+                skills: ['TypeScript', 'Tailwind'],
+                img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                isUser: false,
+                linkedin: 'https://linkedin.com/in/odetola',
+                github: 'odetola-dev',
+                twitter: 'OdetolaIVO',
+            },
+            {
+                id: 2,
+                name: 'Mensah Prince Mawuli',
+                title: 'Web Developer, Freelancer, Chief Technology officer',
+                company: 'Heis IVO',
+                skills: ['Web Developer', 'Freelancer'],
+                img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                isUser: false,
+                linkedin: 'https://linkedin.com/in/mensah',
+                github: 'mensah-prince',
+                twitter: 'Mensah_Prince',
+            },
+            {
+                id: 3,
+                name: 'Josua Bafto',
+                title: 'AI Research Scientist',
+                company: 'Wecode',
+                skills: ['Programing', 'Hacking', 'Pen tester'],
+                img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                isUser: false,
+                linkedin: '',
+                github: 'bafto-ai',
+                twitter: '',
+            },
+            {
+                id: 4,
+                name: 'Ahiatroga Cyril',
+                title: 'Product Designer',
+                company: 'Fiverr',
+                skills: ['UI/UX', 'Figma', 'Prototyping'],
+                img: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                isUser: false,
+                linkedin: 'https://linkedin.com/in/cyril-design',
+                github: '',
+                twitter: 'CyrilUX',
+            },
+            {
+                id: 5,
+                name: 'David Eze Kennedy',
+                title: 'Director',
+                company: 'IVO',
+                skills: ['AWS', 'Marketing', 'Bussiness Adviser'],
+                img: 'https://images.unsplash.com/photo-1581093588401-f45a563d8a79?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                isUser: false,
+                linkedin: '',
+                github: '',
+                twitter: '',
+            },
+            {
+                id: 6,
+                name: 'Aisha Abubakar',
+                title: 'DevOps Engineer',
+                company: 'CloudCore',
+                skills: ['AWS', 'Kubernetes', 'CI/CD'],
+                img: 'https://images.unsplash.com/photo-15435434543456-f45a563d8a79?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                isUser: false,
+                linkedin: 'https://linkedin.com/in/aisha',
+                github: 'aisha-devops',
+                twitter: 'AishaCloud',
+            }
+        ];
+
+        // Mock Data for the currently logged-in user (persisted locally for demo)
+        let currentUser = {
+            id: 100, // Unique ID for the current user
+            name: 'Jared Stone',
+            title: 'N/A', // Will be filled during signup/edit
+            company: 'N/A',
+            headline: 'Senior Full Stack Developer | Building Next-Gen Web Applications',
+            location: 'Accra, Ghana',
+            contact: 'jared.stone@ivonet.com | +233 50 123 4567',
+            avatar: 'https://placehold.co/120x120/0d47a1/ffffff?text=ME',
+            about: "I am a passionate Full Stack Developer with over 8 years of experience in JavaScript, React, Node.js, and modern cloud architecture (AWS, Azure). I specialize in creating scalable, high-performance web solutions and mentoring junior developers. Always open to connecting with innovators!",
+            experience: [
+                { title: 'Senior Full Stack Developer', company: 'TechFusion Inc.', duration: 'Jan 2021 - Present', description: 'Led the development of a real-time analytics dashboard used by 500+ clients. Introduced CI/CD pipeline, reducing deployment time by 60%.' },
+                { title: 'Mid-Level Software Engineer', company: 'WebScale Solutions', duration: 'Jul 2017 - Dec 2020', description: 'Developed core RESTful APIs and maintained database architecture (PostgreSQL).' },
+            ],
+            education: [
+                { degree: 'B.Sc. Computer Science', institution: 'University of Science & Technology', duration: '2013 - 2017' },
+            ],
+            skills: ['React', 'Node.js', 'TypeScript', 'AWS', 'Docker', 'PostgreSQL', 'Tailwind CSS', 'Agile Methodologies', 'Leadership', 'Mentoring'],
+            // SOCIAL LINKS
+            linkedin: 'https://linkedin.com/in/jaredstone',
+            github: 'jared-codes',
+            twitter: 'jared_tweets',
+            isUser: true
+        };
+
+
+        let jobs = [];
+        let isLoggedIn = false; // Global state for login status
+
+        function populateWorkers(data) {
+            const grid = document.getElementById('user-grid');
+            grid.innerHTML = '';
+
+            // Map the data to ensure new users (who only have 'headline' and not 'title') are displayed correctly.
+            const workersToDisplay = data.map(p => ({
+                ...p,
+                // Use headline if available, otherwise fallback to title, or default.
+                displayTitle: p.headline || p.title || 'Professional User',
+                company: p.company || 'New Network Member',
+                // Join skills array into a display string
+                skillsDisplay: Array.isArray(p.skills) ? p.skills.join(', ') : p.skills || 'No skills listed yet',
+                img: p.avatar || p.img
+            }));
+
+            if (workersToDisplay.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-style: italic;">No professionals found. Try a different search.</p>`;
+                return;
+            }
+            workersToDisplay.forEach(pro => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-img" style="background-image: url('${pro.img}');"></div>
+                    <div class="card-content">
+                        <div>
+                            <h3>${pro.name} ${pro.isUser ? '(You)' : ''}</h3>
+                            <p><strong>${pro.displayTitle}</strong></p>
+                            <p>${pro.company}</p>
+                            <p>${pro.skillsDisplay}</p>
+                        </div>
+                    </div>
+                `;
+                // If it's the current user, clicking opens the detailed profile view
+                card.onclick = () => pro.isUser ? showProfileDashboard() : showProfile(pro);
+                grid.appendChild(card);
+            });
+        }
+
+        function searchWorkers() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            const allProfessionals = professionals;
+            const filtered = allProfessionals.filter(p => {
+                const skillsString = Array.isArray(p.skills) ? p.skills.join(', ').toLowerCase() : (p.skills || '').toLowerCase();
+                const displayTitle = (p.headline || p.title || '').toLowerCase();
+
+                return p.name.toLowerCase().includes(query) ||
+                    displayTitle.includes(query) ||
+                    (p.company || '').toLowerCase().includes(query) ||
+                    skillsString.includes(query);
+            });
+            populateWorkers(filtered);
+        }
+
+        function showProfile(pro) {
+            document.getElementById('profile-name').textContent = pro.name;
+            // Use the correct display property for other professionals
+            document.getElementById('profile-title').textContent = pro.title || pro.headline || 'Professional User';
+            document.getElementById('profile-company').textContent = `Company: ${pro.company || 'N/A'}`;
+            document.getElementById('profile-skills').textContent = `Skills: ${Array.isArray(pro.skills) ? pro.skills.join(', ') : (pro.skills || 'None listed')}`;
+            openModal('profile-modal');
+        }
+
+        function postJob() {
+            const title = document.getElementById('job-title').value.trim();
+            const company = document.getElementById('company').value.trim();
+            const desc = document.getElementById('job-desc').value.trim();
+
+            if (title && company && desc) {
+                jobs.push({ title, company, desc, postedAt: new Date().toLocaleDateString() });
+                populateJobs();
+                document.getElementById('job-form').reset();
+                showNotification('Job posted successfully!', 'success');
+            } else {
+                showNotification('Please fill all fields.', 'error');
+            }
+        }
+
+        function populateJobs() {
+            const grid = document.getElementById('job-grid');
+            grid.innerHTML = '';
+            if (jobs.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No jobs posted yet. Be the first!</p>`;
+                return;
+            }
+            jobs.forEach(job => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-content" style="padding-top: 20px;">
+                        <h3>${job.title}</h3>
+                        <p><strong>${job.company}</strong></p>
+                        <p>${job.desc}</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 12px;">Posted: ${job.postedAt}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function switchModal(from, to) {
+            closeModal(from);
+            openModal(to);
+        }
+
+        // New function to handle displaying the Profile button
+        function setLoggedInState(loggedIn) {
+            isLoggedIn = loggedIn;
+            const authControls = document.getElementById('auth-controls');
+            const profileControls = document.getElementById('profile-controls');
+
+            if (isLoggedIn) {
+                authControls.style.display = 'none';
+                profileControls.style.display = 'block';
+            } else {
+                authControls.style.display = 'block';
+                profileControls.style.display = 'none';
+            }
+        }
+
+        function showProfileDashboard() {
+            // Repopulate the viewing profile with the latest data
+            populateMyProfile();
+            openModal('my-profile-modal');
+        }
+
+        // Function to populate the detailed LinkedIn-style profile modal
+        function populateMyProfile() {
+            // Intro Section
+            document.getElementById('my-profile-avatar').src = currentUser.avatar;
+            document.getElementById('my-profile-name').textContent = currentUser.name;
+            document.getElementById('my-profile-headline').textContent = currentUser.headline;
+            document.getElementById('my-profile-location').textContent = currentUser.location;
+            document.getElementById('my-profile-contact').textContent = currentUser.contact;
+
+            // Social Links Section
+            const socialContainer = document.getElementById('my-profile-social-links');
+            socialContainer.innerHTML = '';
+
+            // Helper function to create social link anchors
+            const createSocialLink = (url, icon, title) => {
+                if (url) {
+                    const a = document.createElement('a');
+                    a.href = url.startsWith('http') ? url : `https://www.${title.toLowerCase()}.com/${url.replace(/^@/, '')}`;
+                    a.target = '_blank';
+                    a.title = title;
+                    a.innerHTML = `<i class="fab fa-${icon}"></i>`;
+                    socialContainer.appendChild(a);
+                }
+            };
+
+            createSocialLink(currentUser.linkedin, 'linkedin', 'LinkedIn');
+            createSocialLink(currentUser.github, 'github', 'GitHub');
+            createSocialLink(currentUser.twitter, 'twitter', 'Twitter');
+
+
+            // About Section
+            document.getElementById('my-profile-about').textContent = currentUser.about;
+
+            // Experience Section
+            const expContainer = document.getElementById('my-profile-experience');
+            expContainer.innerHTML = '';
+            if (currentUser.experience.length === 0) {
+                expContainer.innerHTML = '<p class="text-muted">No experience added yet. Click "Edit Profile" to add some!</p>';
+            }
+            currentUser.experience.forEach(exp => {
+                const item = document.createElement('div');
+                item.className = 'experience-item';
+                item.innerHTML = `
+                    <h4>${exp.title} at ${exp.company}</h4>
+                    <p>${exp.duration}</p>
+                    <p style="font-style: italic; color: var(--text-dark);">${exp.description}</p>
+                `;
+                expContainer.appendChild(item);
+            });
+
+            // Education Section
+            const eduContainer = document.getElementById('my-profile-education');
+            eduContainer.innerHTML = '';
+            if (currentUser.education.length === 0) {
+                eduContainer.innerHTML = '<p class="text-muted">No education added yet. Click "Edit Profile" to add some!</p>';
+            }
+            currentUser.education.forEach(edu => {
+                const item = document.createElement('div');
+                item.className = 'education-item';
+                item.innerHTML = `
+                    <h4>${edu.degree}</h4>
+                    <p>${edu.institution}</p>
+                    <p>${edu.duration}</p>
+                `;
+                eduContainer.appendChild(item);
+            });
+
+            // Skills Section
+            const skillsContainer = document.getElementById('my-profile-skills');
+            skillsContainer.innerHTML = '';
+            if (currentUser.skills.length === 0 || (currentUser.skills.length === 1 && currentUser.skills[0] === 'New User')) {
+                skillsContainer.innerHTML = '<span class="skill-tag">No skills added yet.</span>';
+            } else {
+                currentUser.skills.forEach(skill => {
+                    const tag = document.createElement('span');
+                    tag.className = 'skill-tag';
+                    tag.textContent = skill;
+                    skillsContainer.appendChild(tag);
+                });
+            }
+
+            // Reset scroll to top when opening the modal
+            document.getElementById('profile-scroll-area').scrollTop = 0;
+        }
+
+        // Function to open and pre-fill the edit modal
+        function openEditModal() {
+            // Close the viewing modal first
+            closeModal('my-profile-modal');
+
+            // Pre-fill form fields
+            document.getElementById('edit-name').value = currentUser.name;
+            document.getElementById('edit-headline').value = currentUser.headline;
+            document.getElementById('edit-location').value = currentUser.location;
+            document.getElementById('edit-contact').value = currentUser.contact;
+            document.getElementById('edit-about').value = currentUser.about;
+
+            // Pre-fill NEW social link fields
+            document.getElementById('edit-linkedin').value = currentUser.linkedin || '';
+            document.getElementById('edit-github').value = currentUser.github || '';
+            document.getElementById('edit-twitter').value = currentUser.twitter || '';
+
+            openModal('edit-profile-modal');
+        }
+
+        // Function to save changes
+        function saveProfileChanges() {
+            const name = document.getElementById('edit-name').value.trim();
+            const headline = document.getElementById('edit-headline').value.trim();
+            const location = document.getElementById('edit-location').value.trim();
+            const contact = document.getElementById('edit-contact').value.trim();
+            const about = document.getElementById('edit-about').value.trim();
+            // Get NEW social links
+            const linkedin = document.getElementById('edit-linkedin').value.trim();
+            const github = document.getElementById('edit-github').value.trim();
+            const twitter = document.getElementById('edit-twitter').value.trim();
+
+            if (name && headline && location && contact && about) {
+                // Update the currentUser object (mock persistence)
+                currentUser.name = name;
+                currentUser.headline = headline;
+                currentUser.location = location;
+                currentUser.contact = contact;
+                currentUser.about = about;
+
+                // Update social links
+                currentUser.linkedin = linkedin;
+                currentUser.github = github;
+                currentUser.twitter = twitter;
+
+                showNotification('Profile updated successfully!', 'success');
+                closeModal('edit-profile-modal');
+
+                // Update the user's card in the professionals array
+                const userIndex = professionals.findIndex(p => p.id === currentUser.id);
+                if (userIndex !== -1) {
+                    // Update the existing profile data in the main list
+                    professionals[userIndex].name = currentUser.name;
+                    professionals[userIndex].headline = currentUser.headline;
+                    professionals[userIndex].location = currentUser.location;
+                    // Note: We don't update ALL currentUser properties here (like experience/education)
+                    // as they aren't currently editable via this simple form.
+                }
+
+                // Re-render the grid and re-open the viewing profile with new data
+                populateWorkers(professionals);
+                showProfileDashboard();
+            } else {
+                showNotification('Basic profile fields must be filled.', 'error');
+            }
+        }
+
+
+        function login() {
+            // In a real app, this would validate credentials
+            showNotification('Login successful! (Demo)', 'success');
+            setLoggedInState(true);
+            closeModal('login-modal');
+            // Ensure the workers grid is updated to show the logged-in user if they exist
+            populateWorkers(professionals);
+        }
+
+        function signup() {
+            const fullName = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const number = document.getElementById('signup-number').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+            if (fullName && email && number && password && confirmPassword) {
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match.', 'error');
+                    return;
+                }
+
+                // 1. Create a new default user profile
+                const newUserId = professionals.length + 101;
+                const newUserProfile = {
+                    id: newUserId,
+                    name: fullName,
+                    title: 'New Member',
+                    company: 'Seeking Opportunities',
+                    headline: 'New Member: Update your headline!',
+                    location: 'Unspecified',
+                    contact: `${email} | ${number}`,
+                    avatar: `https://placehold.co/120x120/1976d2/ffffff?text=${fullName[0]}`,
+                    about: "Welcome to IVO! Click 'Edit Profile' to write your professional summary.",
+                    experience: [],
+                    education: [],
+                    skills: ['New User'],
+                    linkedin: '',
+                    github: '',
+                    twitter: '',
+                    isUser: true // Mark this as the currently logged-in user
+                };
+
+                // 2. Set the global currentUser object
+                currentUser = newUserProfile;
+
+                // 3. Add the new user to the professionals list
+                professionals.push(currentUser);
+
+                // 4. Log in and display the grid
+                showNotification('Account created! Welcome to IVO.', 'success');
+                closeModal('signup-modal');
+                setLoggedInState(true);
+                populateWorkers(professionals); // Refresh the grid to show the new card
+            } else {
+                showNotification('Please fill all fields, including Phone Number.', 'error');
+            }
+        }
+
+        function contactProfessional() {
+            const name = document.getElementById('profile-name').textContent;
+            showNotification(`Opening contact window for ${name}... (This is a demo feature)`);
+            closeModal('profile-modal');
+        }
+
+        function showNotification(msg, type = 'info') {
+            const notif = document.createElement('div');
+            notif.textContent = msg;
+            notif.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 10000;
+                padding: 16px 24px; border-radius: 12px; color: white;
+                font-weight: 600; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                background: ${type === 'error' ? '#d32f2f' : type === 'success' ? '#1976d2' : '#0b3a80'};
+                animation: notifSlide 0.5s ease;
+            `;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 3200);
+        }
+
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `@keyframes notifSlide { 
+            0% { transform: translateX(100%); } 
+            100% { transform: translateX(0); } 
+        }`;
+        document.head.appendChild(styleSheet);
+
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.onclick = e => {
+            // Added 'edit-profile-modal' to the list of modals to close on outside click
+            ['profile-modal', 'login-modal', 'signup-modal', 'my-profile-modal', 'edit-profile-modal'].forEach(id => {
+                const modal = document.getElementById(id);
+                if (e.target === modal) closeModal(id);
+            });
+        };
+
+        // Init
+        setLoggedInState(false); // Ensure initial state is logged out
+        populateWorkers(professionals);
+        populateJobs();
+    </script>
+</body>
+
+</html>
