@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEDG5GNDG5"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEDG5GNDG5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -883,23 +882,19 @@
 
 <body data-theme="light">
 
-    <!-- THEME TOGGLE -->
     <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
         <i class="fas fa-moon"></i>
     </button>
 
-    <!-- HEADER -->
     <header>
         <h1>IVO</h1>
         <p>Connect with Top Talent • Build Your Dream Team</p>
 
-        <!-- Login/Sign Up Buttons (Initially visible) -->
         <div id="auth-controls" style="position: absolute; top: 20px; right: 20px;">
             <button onclick="openModal('login-modal')" class="auth-btn">Login</button>
             <button onclick="openModal('signup-modal')" class="auth-btn signup">Sign Up</button>
         </div>
 
-        <!-- Profile Button (Hidden until logged in) -->
         <div id="profile-controls" style="position: absolute; top: 20px; right: 20px; display: none;">
             <button onclick="showProfileDashboard()" class="auth-btn signup">
                 <i class="fas fa-user-circle"></i> Profile
@@ -907,16 +902,13 @@
         </div>
     </header>
 
-    <!-- NAV -->
     <nav>
         <a href="#workers" onclick="smoothScroll('#workers')">Find Talent</a>
         <a href="#job-form" onclick="smoothScroll('#job-form')">Post Jobs</a>
         <a href="#about" onclick="smoothScroll('#about')">About IVO</a>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <div class="container">
-        <!-- FIND TALENT -->
         <section id="workers" class="section">
             <h2>Search Professionals</h2>
             <div class="search-bar">
@@ -927,7 +919,6 @@
             <div id="user-grid" class="user-grid"></div>
         </section>
 
-        <!-- POST JOBS -->
         <section id="jobs" class="section">
             <h2>Post a Job Opening</h2>
             <form id="job-form" onsubmit="event.preventDefault(); postJob();">
@@ -940,7 +931,6 @@
             <div id="job-grid" class="job-grid"></div>
         </section>
 
-        <!-- ABOUT IVO -->
         <section id="about" class="section">
             <h2>About IVO</h2>
             <div class="about-content">
@@ -971,7 +961,6 @@
         </section>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
     <p>Connect with us on.</p>
     <div class="social-links-footer">
@@ -1005,9 +994,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- MODALS -->
-
-    <!-- MODAL 1: Profile Preview (for OTHER Professionals) -->
     <div id="profile-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('profile-modal')">×</span>
@@ -1019,14 +1005,12 @@
         </div>
     </div>
 
-    <!-- MODAL 2: DETAILED MY PROFILE (LinkedIn Style) -->
     <div id="my-profile-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('my-profile-modal')">×</span>
 
             <div id="profile-scroll-area">
 
-                <!-- 1. INTRO SECTION -->
                 <div class="profile-section-card profile-header-card">
                     <div class="profile-cover-photo"></div>
                     <img id="my-profile-avatar" class="profile-avatar"
@@ -1037,12 +1021,9 @@
                         <p class="location" id="my-profile-location"></p>
                         <p id="my-profile-contact"></p>
 
-                        <!-- NEW SOCIAL LINKS DISPLAY -->
                         <div id="my-profile-social-links" class="social-links-profile">
-                            <!-- Social links will be injected here -->
-                        </div>
+                            </div>
 
-                        <!-- EDIT PROFILE BUTTON -->
                         <button class="edit-profile-btn" onclick="openEditModal()">
                             <i class="fas fa-edit"></i> Edit Profile
                         </button>
@@ -1050,40 +1031,32 @@
                     </div>
                 </div>
 
-                <!-- 2. ABOUT SECTION -->
                 <div class="profile-section-card">
                     <h3>About</h3>
                     <p id="my-profile-about"></p>
                 </div>
 
-                <!-- 3. EXPERIENCE SECTION -->
                 <div class="profile-section-card">
                     <h3>Experience</h3>
                     <div id="my-profile-experience">
-                        <!-- Experience items will be injected here -->
-                    </div>
+                        </div>
                 </div>
 
-                <!-- 4. EDUCATION SECTION -->
                 <div class="profile-section-card">
                     <h3>Education</h3>
                     <div id="my-profile-education">
-                        <!-- Education items will be injected here -->
-                    </div>
+                        </div>
                 </div>
 
-                <!-- 5. SKILLS SECTION -->
                 <div class="profile-section-card">
                     <h3>Skills</h3>
                     <div id="my-profile-skills" class="skill-tags">
-                        <!-- Skill tags will be injected here -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 3: EDIT PROFILE -->
     <div id="edit-profile-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('edit-profile-modal')">×</span>
@@ -1094,7 +1067,6 @@
                 <input type="text" id="edit-location" placeholder="Location (e.g., Accra, Ghana)" required>
                 <input type="text" id="edit-contact" placeholder="Contact Info (e.g., email | phone)" required>
 
-                <!-- NEW SOCIAL LINKS INPUTS -->
                 <input type="text" id="edit-linkedin" placeholder="LinkedIn URL/Handle (optional)">
                 <input type="text" id="edit-github" placeholder="GitHub Username (optional)">
                 <input type="text" id="edit-twitter" placeholder="Twitter/X Handle (optional)">
@@ -1110,8 +1082,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('login-modal')">×</span>
             <h2>Login to IVO</h2>
-            <input type="email" placeholder="Email Address" required>
-            <input type="password" placeholder="Password" required>
+            <input type="email" id="login-email" placeholder="Email Address" required>
+            <input type="password" id="login-password" placeholder="Password" required>
             <button onclick="login()">Login</button>
             <div class="switch">
                 Don't have an account? <a href="#" onclick="switchModal('login-modal', 'signup-modal')">Sign Up</a>
@@ -1125,7 +1097,6 @@
             <h2>Create Your IVO Account</h2>
             <input type="text" id="signup-name" placeholder="Full Name" required>
             <input type="email" id="signup-email" placeholder="Email Address" required>
-            <!-- Phone Number Input -->
             <input type="number" id="signup-number" placeholder="Phone Number" required>
             <input type="password" id="signup-password" placeholder="Password" required>
             <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required>
@@ -1136,9 +1107,273 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
-        // === SMOOTH SCROLL ===
+        // --- API CONFIGURATION ---
+        // !!! IMPORTANT: REPLACE THIS URL with the address of your live backend server !!!
+        const API_BASE_URL = 'http://localhost:3000/api'; 
+        
+        // --- GLOBAL STATE ---
+        let currentUser = null; // Holds the currently logged-in user's profile data
+        let authToken = localStorage.getItem('authToken'); // Check for existing token in browser storage
+
+
+        // === INITIALIZATION & DATA FETCHING ===
+
+        // Function to check if the user has a valid token and fetch their profile
+        async function checkAuthStatus() {
+            if (authToken) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/profile`, {
+                        headers: { 'Authorization': `Bearer ${authToken}` }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        currentUser = data; // Assuming API returns the user object directly
+                        setLoggedInState(true);
+                    } else {
+                        // Token invalid or expired
+                        clearAuth();
+                    }
+                } catch (error) {
+                    console.error('Auth check or profile fetch failed:', error);
+                    clearAuth();
+                }
+            } else {
+                setLoggedInState(false);
+            }
+        }
+
+        async function fetchAndRenderWorkers(query = '') {
+            const grid = document.getElementById('user-grid');
+            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--accent-blue);">Loading professionals...</p>';
+
+            try {
+                const url = query ? 
+                    `${API_BASE_URL}/professionals/search?q=${encodeURIComponent(query)}` : 
+                    `${API_BASE_URL}/professionals`;
+                
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Failed to fetch professionals');
+                const professionals = await response.json();
+                
+                // Add the current user to the top of the list if logged in and not already present
+                let displayList = professionals;
+                if (currentUser && !professionals.some(p => p.id === currentUser.id)) {
+                    displayList = [{ ...currentUser, isUser: true }, ...professionals];
+                }
+
+                populateWorkers(displayList);
+            } catch (error) {
+                console.error('Error fetching professionals:', error);
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--close-btn-hover); font-style: italic;">Error loading talent. Please check your API connection.</p>`;
+            }
+        }
+
+        async function fetchAndRenderJobs() {
+            const grid = document.getElementById('job-grid');
+            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--accent-blue);">Loading job postings...</p>';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/jobs`);
+                if (!response.ok) throw new Error('Failed to fetch jobs');
+                const jobs = await response.json();
+                populateJobs(jobs);
+            } catch (error) {
+                console.error('Error fetching jobs:', error);
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--close-btn-hover); font-style: italic;">Error loading jobs. Please check your API connection.</p>`;
+            }
+        }
+
+        // Run initial data fetch and auth check
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthStatus().then(() => {
+                fetchAndRenderWorkers();
+                fetchAndRenderJobs();
+            });
+        });
+
+
+        // === AUTHENTICATION API CALLS ===
+        
+        function setAuthToken(token) {
+            authToken = token;
+            localStorage.setItem('authToken', token);
+        }
+
+        function clearAuth() {
+            authToken = null;
+            localStorage.removeItem('authToken');
+            currentUser = null;
+            setLoggedInState(false);
+            // Re-render workers to remove 'You' tag and hide profile button
+            fetchAndRenderWorkers(); 
+        }
+
+        async function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    setAuthToken(data.token);
+                    currentUser = data.user; // API should return token and user profile
+                    showNotification('Login successful!', 'success');
+                    closeModal('login-modal');
+                    setLoggedInState(true);
+                    fetchAndRenderWorkers(); // Refresh grid
+                } else {
+                    showNotification(data.message || 'Login failed. Check credentials.', 'error');
+                }
+            } catch (error) {
+                showNotification('An error occurred during login.', 'error');
+                console.error('Login error:', error);
+            }
+        }
+
+        async function signup() {
+            const fullName = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const number = document.getElementById('signup-number').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullName, email, number, password })
+                });
+                
+                const data = await response.json();
+
+                if (response.ok) {
+                    setAuthToken(data.token);
+                    currentUser = data.user; // API should return token and new user profile
+                    showNotification('Account created! Welcome to IVO.', 'success');
+                    closeModal('signup-modal');
+                    setLoggedInState(true);
+                    fetchAndRenderWorkers(); // Refresh grid
+                } else {
+                    showNotification(data.message || 'Sign up failed.', 'error');
+                }
+            } catch (error) {
+                showNotification('An error occurred during sign up.', 'error');
+                console.error('Signup error:', error);
+            }
+        }
+
+        // === JOB POSTING API CALL ===
+
+        async function postJob() {
+            if (!currentUser) {
+                showNotification('You must be logged in to post a job.', 'error');
+                openModal('login-modal');
+                return;
+            }
+            
+            const title = document.getElementById('job-title').value.trim();
+            const company = document.getElementById('company').value.trim();
+            const desc = document.getElementById('job-desc').value.trim();
+
+            if (!title || !company || !desc) {
+                showNotification('Please fill all job fields.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/jobs`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}` // Use token for protected route
+                    },
+                    body: JSON.stringify({ title, company, description: desc })
+                });
+                
+                const data = await response.json();
+
+                if (response.ok) {
+                    showNotification('Job posted successfully!', 'success');
+                    document.getElementById('job-form').reset();
+                    fetchAndRenderJobs(); // Re-fetch and re-render the job list
+                } else {
+                    showNotification(data.message || 'Failed to post job.', 'error');
+                }
+            } catch (error) {
+                showNotification('Error connecting to job server.', 'error');
+                console.error('Post job error:', error);
+            }
+        }
+
+        // === PROFILE EDITING API CALL ===
+
+        async function saveProfileChanges() {
+            if (!currentUser) return;
+
+            const updatedProfile = {
+                name: document.getElementById('edit-name').value.trim(),
+                headline: document.getElementById('edit-headline').value.trim(),
+                location: document.getElementById('edit-location').value.trim(),
+                contact: document.getElementById('edit-contact').value.trim(),
+                about: document.getElementById('edit-about').value.trim(),
+                linkedin: document.getElementById('edit-linkedin').value.trim(),
+                github: document.getElementById('edit-github').value.trim(),
+                twitter: document.getElementById('edit-twitter').value.trim(),
+            };
+
+            // Basic validation
+            if (!updatedProfile.name || !updatedProfile.headline || !updatedProfile.location || !updatedProfile.contact || !updatedProfile.about) {
+                showNotification('Basic profile fields must be filled.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(updatedProfile)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Update the local currentUser object with the data returned from the server
+                    currentUser = { ...currentUser, ...updatedProfile, ...data }; 
+                    showNotification('Profile updated successfully!', 'success');
+                    closeModal('edit-profile-modal');
+                    
+                    // Re-render the profile and workers grid
+                    populateMyProfile();
+                    showProfileDashboard();
+                    fetchAndRenderWorkers(); 
+                } else {
+                    showNotification(data.message || 'Failed to save profile changes.', 'error');
+                }
+            } catch (error) {
+                showNotification('Error connecting to profile server.', 'error');
+                console.error('Save profile error:', error);
+            }
+        }
+        
+        // --- HELPER FUNCTIONS (UNCHANGED CORE LOGIC) ---
+
         function smoothScroll(target) {
             event.preventDefault();
             const element = document.querySelector(target);
@@ -1154,7 +1389,6 @@
             });
         }
 
-        // === THEME TOGGLE ===
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
         const currentTheme = localStorage.getItem('theme') || 'light';
@@ -1175,191 +1409,55 @@
                 : '<i class="fas fa-moon"></i>';
         }
 
-        // === PROFESSIONAL DATA (Original Profiles are here) ===
-        const professionals = [
-            {
-                id: 1,
-                name: 'Odetola Divine',
-                title: 'Chief Executive Officer',
-                company: 'IVO',
-                skills: ['TypeScript', 'Tailwind'],
-                img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                isUser: false,
-                linkedin: 'https://linkedin.com/in/odetola',
-                github: 'odetola-dev',
-                twitter: 'OdetolaIVO',
-            },
-            {
-                id: 2,
-                name: 'Mensah Prince Mawuli',
-                title: 'Web Developer, Freelancer, Chief Technology officer',
-                company: 'Heis IVO',
-                skills: ['Web Developer', 'Freelancer'],
-                img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                isUser: false,
-                linkedin: 'https://linkedin.com/in/mensah',
-                github: 'mensah-prince',
-                twitter: 'Mensah_Prince',
-            },
-            {
-                id: 3,
-                name: 'Josua Bafto',
-                title: 'AI Research Scientist',
-                company: 'Wecode',
-                skills: ['Programing', 'Hacking', 'Pen tester'],
-                img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                isUser: false,
-                linkedin: '',
-                github: 'bafto-ai',
-                twitter: '',
-            },
-            {
-                id: 4,
-                name: 'Ahiatroga Cyril',
-                title: 'Product Designer',
-                company: 'Fiverr',
-                skills: ['UI/UX', 'Figma', 'Prototyping'],
-                img: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                isUser: false,
-                linkedin: 'https://linkedin.com/in/cyril-design',
-                github: '',
-                twitter: 'CyrilUX',
-            },
-            {
-                id: 5,
-                name: 'David Eze Kennedy',
-                title: 'Director',
-                company: 'IVO',
-                skills: ['AWS', 'Marketing', 'Bussiness Adviser'],
-                img: 'https://images.unsplash.com/photo-1581093588401-f45a563d8a79?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                isUser: false,
-                linkedin: '',
-                github: '',
-                twitter: '',
-            },
-            {
-                id: 6,
-                name: 'Aisha Abubakar',
-                title: 'DevOps Engineer',
-                company: 'CloudCore',
-                skills: ['AWS', 'Kubernetes', 'CI/CD'],
-                img: 'https://images.unsplash.com/photo-15435434543456-f45a563d8a79?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                isUser: false,
-                linkedin: 'https://linkedin.com/in/aisha',
-                github: 'aisha-devops',
-                twitter: 'AishaCloud',
-            }
-        ];
-
-        // Mock Data for the currently logged-in user (persisted locally for demo)
-        let currentUser = {
-            id: 100, // Unique ID for the current user
-            name: 'Jared Stone',
-            title: 'N/A', // Will be filled during signup/edit
-            company: 'N/A',
-            headline: 'Senior Full Stack Developer | Building Next-Gen Web Applications',
-            location: 'Accra, Ghana',
-            contact: 'jared.stone@ivonet.com | +233 50 123 4567',
-            avatar: 'https://placehold.co/120x120/0d47a1/ffffff?text=ME',
-            about: "I am a passionate Full Stack Developer with over 8 years of experience in JavaScript, React, Node.js, and modern cloud architecture (AWS, Azure). I specialize in creating scalable, high-performance web solutions and mentoring junior developers. Always open to connecting with innovators!",
-            experience: [
-                { title: 'Senior Full Stack Developer', company: 'TechFusion Inc.', duration: 'Jan 2021 - Present', description: 'Led the development of a real-time analytics dashboard used by 500+ clients. Introduced CI/CD pipeline, reducing deployment time by 60%.' },
-                { title: 'Mid-Level Software Engineer', company: 'WebScale Solutions', duration: 'Jul 2017 - Dec 2020', description: 'Developed core RESTful APIs and maintained database architecture (PostgreSQL).' },
-            ],
-            education: [
-                { degree: 'B.Sc. Computer Science', institution: 'University of Science & Technology', duration: '2013 - 2017' },
-            ],
-            skills: ['React', 'Node.js', 'TypeScript', 'AWS', 'Docker', 'PostgreSQL', 'Tailwind CSS', 'Agile Methodologies', 'Leadership', 'Mentoring'],
-            // SOCIAL LINKS
-            linkedin: 'https://linkedin.com/in/jaredstone',
-            github: 'jared-codes',
-            twitter: 'jared_tweets',
-            isUser: true
-        };
-
-
-        let jobs = [];
-        let isLoggedIn = false; // Global state for login status
-
-        function populateWorkers(data) {
+        function populateWorkers(workersToDisplay) {
             const grid = document.getElementById('user-grid');
             grid.innerHTML = '';
-
-            // Map the data to ensure new users (who only have 'headline' and not 'title') are displayed correctly.
-            const workersToDisplay = data.map(p => ({
-                ...p,
-                // Use headline if available, otherwise fallback to title, or default.
-                displayTitle: p.headline || p.title || 'Professional User',
-                company: p.company || 'New Network Member',
-                // Join skills array into a display string
-                skillsDisplay: Array.isArray(p.skills) ? p.skills.join(', ') : p.skills || 'No skills listed yet',
-                img: p.avatar || p.img
-            }));
 
             if (workersToDisplay.length === 0) {
                 grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-style: italic;">No professionals found. Try a different search.</p>`;
                 return;
             }
             workersToDisplay.forEach(pro => {
+                // Ensure default values for missing data from API
+                const name = pro.name || 'New User';
+                const displayTitle = pro.headline || pro.title || 'Professional User';
+                const company = pro.company || 'New Network Member';
+                const skillsDisplay = Array.isArray(pro.skills) ? pro.skills.join(', ') : pro.skills || 'No skills listed yet';
+                const img = pro.avatar || pro.img || 'https://placehold.co/120x120/0d47a1/ffffff?text=ME';
+
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div class="card-img" style="background-image: url('${pro.img}');"></div>
+                    <div class="card-img" style="background-image: url('${img}');"></div>
                     <div class="card-content">
                         <div>
-                            <h3>${pro.name} ${pro.isUser ? '(You)' : ''}</h3>
-                            <p><strong>${pro.displayTitle}</strong></p>
-                            <p>${pro.company}</p>
-                            <p>${pro.skillsDisplay}</p>
+                            <h3>${name} ${pro.isUser ? '(You)' : ''}</h3>
+                            <p><strong>${displayTitle}</strong></p>
+                            <p>${company}</p>
+                            <p>${skillsDisplay}</p>
                         </div>
                     </div>
                 `;
-                // If it's the current user, clicking opens the detailed profile view
                 card.onclick = () => pro.isUser ? showProfileDashboard() : showProfile(pro);
                 grid.appendChild(card);
             });
         }
 
         function searchWorkers() {
-            const query = document.getElementById('search-input').value.trim().toLowerCase();
-            const allProfessionals = professionals;
-            const filtered = allProfessionals.filter(p => {
-                const skillsString = Array.isArray(p.skills) ? p.skills.join(', ').toLowerCase() : (p.skills || '').toLowerCase();
-                const displayTitle = (p.headline || p.title || '').toLowerCase();
-
-                return p.name.toLowerCase().includes(query) ||
-                    displayTitle.includes(query) ||
-                    (p.company || '').toLowerCase().includes(query) ||
-                    skillsString.includes(query);
-            });
-            populateWorkers(filtered);
+            const query = document.getElementById('search-input').value.trim();
+            // This now calls the API function with the search query
+            fetchAndRenderWorkers(query);
         }
 
         function showProfile(pro) {
             document.getElementById('profile-name').textContent = pro.name;
-            // Use the correct display property for other professionals
             document.getElementById('profile-title').textContent = pro.title || pro.headline || 'Professional User';
             document.getElementById('profile-company').textContent = `Company: ${pro.company || 'N/A'}`;
             document.getElementById('profile-skills').textContent = `Skills: ${Array.isArray(pro.skills) ? pro.skills.join(', ') : (pro.skills || 'None listed')}`;
             openModal('profile-modal');
         }
 
-        function postJob() {
-            const title = document.getElementById('job-title').value.trim();
-            const company = document.getElementById('company').value.trim();
-            const desc = document.getElementById('job-desc').value.trim();
-
-            if (title && company && desc) {
-                jobs.push({ title, company, desc, postedAt: new Date().toLocaleDateString() });
-                populateJobs();
-                document.getElementById('job-form').reset();
-                showNotification('Job posted successfully!', 'success');
-            } else {
-                showNotification('Please fill all fields.', 'error');
-            }
-        }
-
-        function populateJobs() {
+        function populateJobs(jobs) {
             const grid = document.getElementById('job-grid');
             grid.innerHTML = '';
             if (jobs.length === 0) {
@@ -1373,8 +1471,8 @@
                     <div class="card-content" style="padding-top: 20px;">
                         <h3>${job.title}</h3>
                         <p><strong>${job.company}</strong></p>
-                        <p>${job.desc}</p>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 12px;">Posted: ${job.postedAt}</p>
+                        <p>${job.description || job.desc || 'No description provided.'}</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 12px;">Posted: ${job.postedAt || new Date().toLocaleDateString()}</p>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1394,13 +1492,11 @@
             openModal(to);
         }
 
-        // New function to handle displaying the Profile button
         function setLoggedInState(loggedIn) {
-            isLoggedIn = loggedIn;
             const authControls = document.getElementById('auth-controls');
             const profileControls = document.getElementById('profile-controls');
 
-            if (isLoggedIn) {
+            if (loggedIn) {
                 authControls.style.display = 'none';
                 profileControls.style.display = 'block';
             } else {
@@ -1410,29 +1506,34 @@
         }
 
         function showProfileDashboard() {
-            // Repopulate the viewing profile with the latest data
+            if (!currentUser) return;
             populateMyProfile();
             openModal('my-profile-modal');
         }
 
-        // Function to populate the detailed LinkedIn-style profile modal
         function populateMyProfile() {
+            if (!currentUser) return; // Should not happen if setLoggedInState is correct
+
             // Intro Section
-            document.getElementById('my-profile-avatar').src = currentUser.avatar;
-            document.getElementById('my-profile-name').textContent = currentUser.name;
-            document.getElementById('my-profile-headline').textContent = currentUser.headline;
-            document.getElementById('my-profile-location').textContent = currentUser.location;
-            document.getElementById('my-profile-contact').textContent = currentUser.contact;
+            document.getElementById('my-profile-avatar').src = currentUser.avatar || 'https://placehold.co/120x120/0d47a1/ffffff?text=ME';
+            document.getElementById('my-profile-name').textContent = currentUser.name || 'User Profile';
+            document.getElementById('my-profile-headline').textContent = currentUser.headline || 'No Headline Provided';
+            document.getElementById('my-profile-location').textContent = currentUser.location || 'Location Not Specified';
+            document.getElementById('my-profile-contact').textContent = currentUser.contact || 'No Contact Info';
 
             // Social Links Section
             const socialContainer = document.getElementById('my-profile-social-links');
             socialContainer.innerHTML = '';
 
-            // Helper function to create social link anchors
             const createSocialLink = (url, icon, title) => {
                 if (url) {
                     const a = document.createElement('a');
-                    a.href = url.startsWith('http') ? url : `https://www.${title.toLowerCase()}.com/${url.replace(/^@/, '')}`;
+                    // Basic URL construction - can be improved on the backend
+                    const href = url.startsWith('http') ? url : 
+                        title === 'GitHub' ? `https://github.com/${url.replace(/^@/, '')}` :
+                        title === 'Twitter' ? `https://x.com/${url.replace(/^@/, '')}` :
+                        url;
+                    a.href = href;
                     a.target = '_blank';
                     a.title = title;
                     a.innerHTML = `<i class="fab fa-${icon}"></i>`;
@@ -1444,17 +1545,17 @@
             createSocialLink(currentUser.github, 'github', 'GitHub');
             createSocialLink(currentUser.twitter, 'twitter', 'Twitter');
 
-
             // About Section
-            document.getElementById('my-profile-about').textContent = currentUser.about;
+            document.getElementById('my-profile-about').textContent = currentUser.about || 'Click "Edit Profile" to write your professional summary.';
 
             // Experience Section
             const expContainer = document.getElementById('my-profile-experience');
             expContainer.innerHTML = '';
-            if (currentUser.experience.length === 0) {
-                expContainer.innerHTML = '<p class="text-muted">No experience added yet. Click "Edit Profile" to add some!</p>';
+            const experiences = currentUser.experience || [];
+            if (experiences.length === 0) {
+                expContainer.innerHTML = '<p class="text-muted">No experience added yet.</p>';
             }
-            currentUser.experience.forEach(exp => {
+            experiences.forEach(exp => {
                 const item = document.createElement('div');
                 item.className = 'experience-item';
                 item.innerHTML = `
@@ -1468,10 +1569,11 @@
             // Education Section
             const eduContainer = document.getElementById('my-profile-education');
             eduContainer.innerHTML = '';
-            if (currentUser.education.length === 0) {
-                eduContainer.innerHTML = '<p class="text-muted">No education added yet. Click "Edit Profile" to add some!</p>';
+            const educations = currentUser.education || [];
+            if (educations.length === 0) {
+                eduContainer.innerHTML = '<p class="text-muted">No education added yet.</p>';
             }
-            currentUser.education.forEach(edu => {
+            educations.forEach(edu => {
                 const item = document.createElement('div');
                 item.className = 'education-item';
                 item.innerHTML = `
@@ -1485,10 +1587,11 @@
             // Skills Section
             const skillsContainer = document.getElementById('my-profile-skills');
             skillsContainer.innerHTML = '';
-            if (currentUser.skills.length === 0 || (currentUser.skills.length === 1 && currentUser.skills[0] === 'New User')) {
+            const skills = currentUser.skills || [];
+            if (skills.length === 0 || (skills.length === 1 && skills[0] === 'New User')) {
                 skillsContainer.innerHTML = '<span class="skill-tag">No skills added yet.</span>';
             } else {
-                currentUser.skills.forEach(skill => {
+                skills.forEach(skill => {
                     const tag = document.createElement('span');
                     tag.className = 'skill-tag';
                     tag.textContent = skill;
@@ -1496,23 +1599,19 @@
                 });
             }
 
-            // Reset scroll to top when opening the modal
             document.getElementById('profile-scroll-area').scrollTop = 0;
         }
 
-        // Function to open and pre-fill the edit modal
         function openEditModal() {
-            // Close the viewing modal first
+            if (!currentUser) return;
             closeModal('my-profile-modal');
 
-            // Pre-fill form fields
-            document.getElementById('edit-name').value = currentUser.name;
-            document.getElementById('edit-headline').value = currentUser.headline;
-            document.getElementById('edit-location').value = currentUser.location;
-            document.getElementById('edit-contact').value = currentUser.contact;
-            document.getElementById('edit-about').value = currentUser.about;
+            document.getElementById('edit-name').value = currentUser.name || '';
+            document.getElementById('edit-headline').value = currentUser.headline || '';
+            document.getElementById('edit-location').value = currentUser.location || '';
+            document.getElementById('edit-contact').value = currentUser.contact || '';
+            document.getElementById('edit-about').value = currentUser.about || '';
 
-            // Pre-fill NEW social link fields
             document.getElementById('edit-linkedin').value = currentUser.linkedin || '';
             document.getElementById('edit-github').value = currentUser.github || '';
             document.getElementById('edit-twitter').value = currentUser.twitter || '';
@@ -1520,116 +1619,9 @@
             openModal('edit-profile-modal');
         }
 
-        // Function to save changes
-        function saveProfileChanges() {
-            const name = document.getElementById('edit-name').value.trim();
-            const headline = document.getElementById('edit-headline').value.trim();
-            const location = document.getElementById('edit-location').value.trim();
-            const contact = document.getElementById('edit-contact').value.trim();
-            const about = document.getElementById('edit-about').value.trim();
-            // Get NEW social links
-            const linkedin = document.getElementById('edit-linkedin').value.trim();
-            const github = document.getElementById('edit-github').value.trim();
-            const twitter = document.getElementById('edit-twitter').value.trim();
-
-            if (name && headline && location && contact && about) {
-                // Update the currentUser object (mock persistence)
-                currentUser.name = name;
-                currentUser.headline = headline;
-                currentUser.location = location;
-                currentUser.contact = contact;
-                currentUser.about = about;
-
-                // Update social links
-                currentUser.linkedin = linkedin;
-                currentUser.github = github;
-                currentUser.twitter = twitter;
-
-                showNotification('Profile updated successfully!', 'success');
-                closeModal('edit-profile-modal');
-
-                // Update the user's card in the professionals array
-                const userIndex = professionals.findIndex(p => p.id === currentUser.id);
-                if (userIndex !== -1) {
-                    // Update the existing profile data in the main list
-                    professionals[userIndex].name = currentUser.name;
-                    professionals[userIndex].headline = currentUser.headline;
-                    professionals[userIndex].location = currentUser.location;
-                    // Note: We don't update ALL currentUser properties here (like experience/education)
-                    // as they aren't currently editable via this simple form.
-                }
-
-                // Re-render the grid and re-open the viewing profile with new data
-                populateWorkers(professionals);
-                showProfileDashboard();
-            } else {
-                showNotification('Basic profile fields must be filled.', 'error');
-            }
-        }
-
-
-        function login() {
-            // In a real app, this would validate credentials
-            showNotification('Login successful! (Demo)', 'success');
-            setLoggedInState(true);
-            closeModal('login-modal');
-            // Ensure the workers grid is updated to show the logged-in user if they exist
-            populateWorkers(professionals);
-        }
-
-        function signup() {
-            const fullName = document.getElementById('signup-name').value;
-            const email = document.getElementById('signup-email').value;
-            const number = document.getElementById('signup-number').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm-password').value;
-
-            if (fullName && email && number && password && confirmPassword) {
-                if (password !== confirmPassword) {
-                    showNotification('Passwords do not match.', 'error');
-                    return;
-                }
-
-                // 1. Create a new default user profile
-                const newUserId = professionals.length + 101;
-                const newUserProfile = {
-                    id: newUserId,
-                    name: fullName,
-                    title: 'New Member',
-                    company: 'Seeking Opportunities',
-                    headline: 'New Member: Update your headline!',
-                    location: 'Unspecified',
-                    contact: `${email} | ${number}`,
-                    avatar: `https://placehold.co/120x120/1976d2/ffffff?text=${fullName[0]}`,
-                    about: "Welcome to IVO! Click 'Edit Profile' to write your professional summary.",
-                    experience: [],
-                    education: [],
-                    skills: ['New User'],
-                    linkedin: '',
-                    github: '',
-                    twitter: '',
-                    isUser: true // Mark this as the currently logged-in user
-                };
-
-                // 2. Set the global currentUser object
-                currentUser = newUserProfile;
-
-                // 3. Add the new user to the professionals list
-                professionals.push(currentUser);
-
-                // 4. Log in and display the grid
-                showNotification('Account created! Welcome to IVO.', 'success');
-                closeModal('signup-modal');
-                setLoggedInState(true);
-                populateWorkers(professionals); // Refresh the grid to show the new card
-            } else {
-                showNotification('Please fill all fields, including Phone Number.', 'error');
-            }
-        }
-
         function contactProfessional() {
             const name = document.getElementById('profile-name').textContent;
-            showNotification(`Opening contact window for ${name}... (This is a demo feature)`);
+            showNotification(`Opening contact window for ${name}... (API endpoint needed for real contact)`, 'info');
             closeModal('profile-modal');
         }
 
@@ -1670,17 +1662,11 @@
         });
 
         window.onclick = e => {
-            // Added 'edit-profile-modal' to the list of modals to close on outside click
             ['profile-modal', 'login-modal', 'signup-modal', 'my-profile-modal', 'edit-profile-modal'].forEach(id => {
                 const modal = document.getElementById(id);
                 if (e.target === modal) closeModal(id);
             });
         };
-
-        // Init
-        setLoggedInState(false); // Ensure initial state is logged out
-        populateWorkers(professionals);
-        populateJobs();
     </script>
 </body>
 
